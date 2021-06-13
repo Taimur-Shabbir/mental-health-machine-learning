@@ -14,7 +14,7 @@ The major costs for businesses of untreated mental illnesses among employees are
 - health insurance
 - rehiring (to replace an employee who has discontinued work due to mental healh reasons)
 
-According to the [World Economic Forum](https://www.weforum.org/reports/global-economic-burden-non-communicable-diseases), mental health conditions will cost $16.1 trillion from 2011 to 2031. If we are able to accurately predict the individuals in the workplace who have a mental health condition and offer them the support and resources they need, [businesses may save 2 to 4 USD for every dollar they spend on intervention and prevention](https://www.thelancet.com/journals/lanpsy/article/PIIS2215-0366(16)
+According to the [World Economic Forum](https://www.weforum.org/reports/global-economic-burden-non-communicable-diseases), mental health conditions will cost $16.1 trillion from 2011 to 2031. If we are able to accurately predict the individuals in the workplace who have a mental health condition and offer them the support and resources they need, [businesses may save 2 to 4 USD for every dollar they spend on intervention and prevention](https://www.thelancet.com/journals/lanpsy/article/PIIS2215-0366(16))
 
 So, offering mental health services at work not only improves company culture, potentially making it easier to hire talent, but also makes sense from a purely financial point of view.
 
@@ -40,7 +40,7 @@ I did not create any interaction variables because no such combination made intu
 
 ## Training Models and Evaluation Metrics
 
-A significant part of the explanation in the project is devoted to justifying the choice of evaluation metrics. This was a combination of Recall and Precision with a slight preference for optimisation of the former. Briefly, the costs of high False Negatives is much higher than the cost of high False Positives for a company looking to extend their mental health initiatives, so optimising Recall is justified. However, Precision cannot be neglected because the cost of high False Positives would multiply very quickly as the number of employees increases, so this is a particular problem for larger organisations.
+A significant part of the explanation in the project is devoted to justifying the choice of evaluation metrics. This was a combination of Recall and Precision with a slight preference for optimisation of the former. Briefly, the costs of high False Negatives is much greater than the cost of high False Positives for a company looking to improve their mental health initiatives, so optimising Recall is justified. However, Precision cannot be neglected because the cost of high False Positives would multiply very quickly as the number of employees increases, so this is a particular problem for larger organisations.
 
 As stated, there is a detailed explanation in the work that elaborates further.
 
@@ -55,6 +55,8 @@ I chose these models because they contain a good mix of model complexity and sui
 
 # Results
 
-I succeeded in the goal of improving upon the score of my baseline prediction. This had a Recall score of 100% but a Precision score of about 50%. The best performing model was BernoulliNB, which resulted in a Recall score of about 80% and a Precision score of 70%. Using these scores, our model could detect the vast majority of people who actually have a mental illness (4 out of 5) while falsely predicting about 3 out of 10 people who do not have a mental illness, to have a mental illness. This minimises the annual budget (cost) a company would have to set aside because most of it would not be wasted on False Positives.
+I succeeded in the goal of improving upon the score of my baseline prediction. This had a Recall score of 100% but a Precision score of about 50%. The best performing model was BernoulliNB, which resulted in a Recall score of about 80% and a Precision score of 70%.
+
+Using these scores, our model could detect the vast majority of people who actually have a mental illness (4 out of 5) while falsely predicting a small portion of individuals who do not have a mental illness, to have a mental illness. This minimises the annual budget (cost) a company would have to set aside because most of it would not be wasted on False Positives.
 
 In terms of what could be improved upon, more advanced models such as neural networks could be used. More data could be obtained, as only 1200 or so observations existed. Richer data that is not binary in nature could also provide more predictive power.
