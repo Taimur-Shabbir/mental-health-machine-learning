@@ -2,7 +2,7 @@
 
 ## Problem exposition and Business Value
 
-The problem I aimed to solve in this project relates to mental health at work, the associated costs and the services offered to employees that may help them manage and ultimately treat their mental health issues. This problem is framed as the following question: "Is it possible to accurately predict which individuals in the workplace have a mental illness, so that they may be offered the support and services they need as part of company mental health initiatives?"
+The problem I aimed to solve in this project relates to mental health at work, the associated costs and the services offered to employees that may help them manage and ultimately treat their mental health issues. This problem is framed as the following question: "Is it possible to accurately predict which individuals in the workplace have a mental illness, so that they may be offered the support and services they need as part of company mental health initiatives?". As a result, this is a supervised learning, classification task.
 
 In the past two decades or so, nearly every major mental illness has seen rates of incidence rise significantly. Therefore, more emphasis has been placed on the importance of mental health as the costs to the individual and to society become more apparent.
 
@@ -20,7 +20,17 @@ So, offering mental health services at work not only improves company culture, p
 
 ## Data
 
-The data is provided by [Open Source Mental Illness](https://osmihelp.org/research) and is taken more specifically from their [2014 survey](https://www.kaggle.com/osmi/mental-health-in-tech-survey). It has 27 features, most of which are questions that elicit binary "Yes/No" responses. An example feature is "If you have a mental health condition, do you feel that it interferes with your work?"
+The data is provided by [Open Source Mental Illness](https://osmihelp.org/research) and is taken more specifically from their [2014 survey](https://www.kaggle.com/osmi/mental-health-in-tech-survey). It contains 1259 observations where each observation is the response by an individual to a set of questions. These questions make up most of the dataset's features, of which there are 27 in total. Most of these questions are binary in that they elicit a "Yes/No" response. The following are a few examples of this:
+
+- family_history: "Do you have a family history of mental illness?"
+- work_interfere: "If you have a mental health condition, do you feel that it interferes with your work?"
+- benefits: "Does your employer provide mental health benefits?"
+- mentalhealthconsequence: "Do you think that discussing a mental health issue with your employer would have negative consequences?"
+- mentalvsphysical: "Do you feel that your employer takes mental health as seriously as physical health?""
+
+The outcome variable is called treatment and it asks the question "Have you sought treatment for a mental health condition?". An important caveat here is that this is clearly not an ideal outcome variable. An ideal outcome variable would ask "Do you have a mental health condition?".
+
+So I have taken some liberties with this aspect and I used the former as a proxy for the latter, because I feel these questions are close enough to each other. As a result, this analysis is not perfect and has shortcomings that I acknowledge. However, I still believe it can provide some important insights about our problem.
 
 # Approach and Insights
 
@@ -51,12 +61,19 @@ In terms of models, my approaches (selected) here included:
 - Support Vector Machines
 - AdaBoost
 
-I chose these models because they contain a good mix of model complexity and suitability for the problem.
+I chose these models because they contain a good mix of model complexity and suitability for the problem. Of the listed models, BernoulliNB and AdaBoost held the most promise, so Grid Search (GridSearchCV) was used to find optimal values for hyperparameters.
+
+However, the improvement in performance using Grid Search for AdaBoost was so trivial that I removed the code to avoid cluttering up the analysis. Grid Search for BernoulliNB remains in the code.
 
 # Results
 
-I succeeded in the goal of improving upon the score of my baseline prediction. This had a Recall score of 100% but a Precision score of about 50%. The best performing model was BernoulliNB, which resulted in a Recall score of about 80% and a Precision score of 70%.
+I succeeded in the goal of improving upon the score of my baseline prediction. This had a Recall score of 100% but a Precision score of about 50%. The best performing model was BernoulliNB, which resulted in a Recall score of about 73% and a Precision score of 71%. Further evaluation using a ROC curve yielded an Area Under the Curve (AUC) of 79.6%
+
+As a next step, I created a Precision-Recall curve and found the threshold value that traded a bit more Precision (down to 68%) for slightly more Recall (80%). This threshold value will be used to make predictions on test sets or other unseen data.
 
 Using these scores, our model could detect the vast majority of people who actually have a mental illness (4 out of 5) while falsely predicting a small portion of individuals who do not have a mental illness, to have a mental illness. This minimises the annual budget (cost) a company would have to set aside because most of it would not be wasted on False Positives.
+
+
+# Future Enhancements
 
 In terms of what could be improved upon, more advanced models such as neural networks could be used. More data could be obtained, as only 1200 or so observations existed. Richer data that is not binary in nature could also provide more predictive power.
