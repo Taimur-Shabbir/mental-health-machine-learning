@@ -114,7 +114,10 @@ Further evaluation using a ROC curve yielded an Area Under the Curve (AUC) of 79
 
 As a next step, I created a Precision-Recall curve and found the threshold value that traded a bit more Precision (down to 68%) for slightly more Recall (80%). This threshold value will be used to make predictions on test sets or other unseen data.
 
-Using these scores, our model could detect the vast majority of people who actually have a mental illness (4 out of 5) while falsely predicting a small portion of individuals who do not have a mental illness, to have a mental illness. This minimises the annual budget (cost) a company would have to set aside because most of it would not be wasted on False Positives.
+
+# Conclusion
+
+Using our model and the chosen threshold score, a company could detect the vast majority of people who actually have a mental illness (4 out of 5) while falsely predicting a small portion of individuals who do not have a mental illness, to have a mental illness. This minimises the cost of mental health illnesses (due to burnout, absenteeism, lost productivity and so on) via early intervention. It also minimises the annual budget (cost) a company would have to set aside for mental health checkups/other similar services because most of it would not be wasted on False Positives, i.e. people who do not need such services.
 
 
 # Future Enhancements
