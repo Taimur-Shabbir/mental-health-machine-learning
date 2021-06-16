@@ -48,8 +48,7 @@ Among other insights, the EDA showed that:
 
 - about half of the respondents had sought treatment for mental health
 
-![Alt text](images/treatment_dist)
-
+![](images/treatment_dist.png)
 
 
 
