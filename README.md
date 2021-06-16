@@ -20,7 +20,11 @@ So, offering mental health services at work not only improves company culture, p
 
 ## Data
 
-The data is provided by [Open Source Mental Illness](https://osmihelp.org/research) and is taken more specifically from their [2014 survey](https://www.kaggle.com/osmi/mental-health-in-tech-survey). It contains 1259 observations where each observation is the response by an individual to a set of questions. These questions make up most of the dataset's features, of which there are 27 in total. Most of these questions are binary in that they elicit a "Yes/No" response. The following are a few examples of this:
+**Data source**: The data is provided by [Open Source Mental Illness](https://osmihelp.org/research) and is taken more specifically from their [2014 survey](https://www.kaggle.com/osmi/mental-health-in-tech-survey).
+
+**Observations**: It contains 1259 observations where each observation is the response by an individual to a set of questions. These questions make up most of the dataset's features.
+
+**Features**: There are 27 features in total. Most of these are binary questions that elicit a "Yes/No" response. The following is a few examples of this:
 
 - family_history: "Do you have a family history of mental illness?"
 - work_interfere: "If you have a mental health condition, do you feel that it interferes with your work?"
@@ -28,7 +32,7 @@ The data is provided by [Open Source Mental Illness](https://osmihelp.org/resear
 - mentalhealthconsequence: "Do you think that discussing a mental health issue with your employer would have negative consequences?"
 - mentalvsphysical: "Do you feel that your employer takes mental health as seriously as physical health?""
 
-The outcome variable is called treatment and it asks the question "Have you sought treatment for a mental health condition?". An important caveat here is that this is clearly not an ideal outcome variable. An ideal outcome variable would ask "Do you have a mental health condition?".
+**Outcome variable**: The outcome variable is called treatment and it asks the question "Have you sought treatment for a mental health condition?". An important caveat here is that this is clearly not an ideal outcome variable. An ideal outcome variable would ask "Do you have a mental health condition?".
 
 So I have taken some liberties with this aspect and I used the former as a proxy for the latter, because I feel these questions are close enough to each other. As a result, this analysis is not perfect and has shortcomings that I acknowledge. However, I still believe it can provide some important insights about our problem.
 
@@ -40,7 +44,18 @@ Since the data was collected as part of a survey, there were some human errors i
 
 For EDA, I chose 8 features to explore that belonging into 1 of 2 groups that I defined. These were variables that i) illustrated the cultural attitude of a company towards mental health or ii) could have possible causal relationships with mental health conditions. Because the majority of the features are categorical variables, there was not much inherent variety in the graphs created.
 
-Among other insights, the EDA showed that about half of the respondents had sought treatment for mental health and that most respondents could avail mental health services, although a considerable minority could not. Individuals in older age groups tended to have sought treatment more so than younger individuals, with the caveat that the majority of the data belonged to the latter group, so generalisations are difficult.
+Among other insights, the EDA showed that:
+
+- about half of the respondents had sought treatment for mental health
+
+![Alt text](images/treatment_dist)
+
+
+
+
+
+
+ and that most respondents could avail mental health services, although a considerable minority could not. Individuals in older age groups tended to have sought treatment more so than younger individuals, with the caveat that the majority of the data belonged to the latter group, so generalisations are difficult.
 
 ## Feature Engineering
 
