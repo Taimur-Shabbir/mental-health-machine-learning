@@ -38,9 +38,17 @@ So I have taken some liberties with this aspect and I used the former as a proxy
 
 # Approach and Insights
 
-## Cleaning and EDA
+## Data Cleaning
 
-Since the data was collected as part of a survey, there were some human errors in filling in information, ranging from misspellings to erroneous entries for Age. About 6% of the data was missing. I replaced NaNs with the mode or median depending on the feature, most interestingly in features where some of the answers provided were ambiguous in nature ("maybe", "don't know") and fixed the aforementioned misspellings manually.
+Since the data was collected as part of a survey, there were some human errors in filling in information, ranging from misspellings to erroneous entries for Age. About 6% of the data was missing, all contained within 4 features
+
+
+![](images/missing_data.png)
+
+
+I replaced NaNs with the mode or median depending on the feature, most interestingly in features where some of the answers provided were ambiguous in nature ("maybe", "don't know") and fixed the aforementioned misspellings manually.
+
+## EDA
 
 For EDA, I chose 8 features to explore that belonging into 1 of 2 groups that I defined. These were variables that i) illustrated the cultural attitude of a company towards mental health or ii) could have possible causal relationships with mental health conditions. Because the majority of the features are categorical variables, there was not much inherent variety in the graphs created.
 
@@ -51,16 +59,32 @@ Among other insights, the EDA showed that:
 ![](images/treatment_dist.png)
 
 
+- a worrying number of individuals did not have access to employer-provided mental health benefits
+
+![](images/benefits.png)
 
 
+- individuals in older age groups tended to have sought treatment more so than their younger counterparts, with the caveat that the majority of the data belonged to the latter group
 
- and that most respondents could avail mental health services, although a considerable minority could not. Individuals in older age groups tended to have sought treatment more so than younger individuals, with the caveat that the majority of the data belonged to the latter group, so generalisations are difficult.
+![](images/age.png)
+
+(The colour of each bar shows us whether the answer to 'treatment' was 'yes' (green) or 'no' (red). This was done for easier interpretation as the oldest age groups have 1 or 2 observations each, so they do not always have both a 'Yes' answer and a 'No' answer.)
+
+![](images/age_treatment.png)
+
+- most individuals did not know whether or not they could obtain mental health leave
+
+![](images/ease_of_leave.png)
 
 ## Feature Engineering
 
-Feature engineering was brief and mostly focused on encoding categorical variables. For ordinal variables, I replaced the values manually in a manner that made intuitive sense. For nominal variables, I created dummies. This was not an issue in terms of memory usage because the cardinality of binary features is low, so only 2 dummies were created per nominal feature.
+Feature engineering was brief and mostly focused on encoding categorical variables. For ordinal variables, I replaced the values manually in a manner that made intuitive sense. For nominal variables, I created dummies. This was not an issue in terms of memory usage because the cardinality of binary features is low (only 2 dummies were created per nominal feature).
 
 I did not create any interaction variables because no such combination made intuitive sense.
+
+Post-engineering correlations were largely weak to moderate in strength as shown by the coefficients. Interpretations of a few interesting pairs are present in the Notebook.ipynb file.
+
+![](images/correlations.png)
 
 ## Training Models and Evaluation Metrics
 
@@ -81,7 +105,12 @@ However, the improvement in performance using Grid Search for AdaBoost was so tr
 
 # Results
 
-I succeeded in the goal of improving upon the score of my baseline prediction. This had a Recall score of 100% but a Precision score of about 50%. The best performing model was BernoulliNB, which resulted in a Recall score of about 73% and a Precision score of 71%. Further evaluation using a ROC curve yielded an Area Under the Curve (AUC) of 79.6%
+I succeeded in the goal of improving upon the score of my baseline prediction. This had a Recall score of 100% but a Precision score of about 50%. The best performing model was BernoulliNB, which resulted in a Recall score of about 73% and a Precision score of 71%.
+
+![](images/prelim_model_results.png)
+
+
+Further evaluation using a ROC curve yielded an Area Under the Curve (AUC) of 79.6%
 
 As a next step, I created a Precision-Recall curve and found the threshold value that traded a bit more Precision (down to 68%) for slightly more Recall (80%). This threshold value will be used to make predictions on test sets or other unseen data.
 
